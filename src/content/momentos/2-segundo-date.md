@@ -1,7 +1,7 @@
 ---
 titulo: "Segundo date - Happy Harry"
 data: "7 de julho de 2026"
-imagem: "/imagem-destaque2.jpeg"
+imagem: "imagem-destaque2.jpeg"
 ordem: 2
 ---
 

@@ -1,7 +1,7 @@
 ---
 titulo: "Primeiro date - Toinzinho"
 data: "27 de junho de 2026"
-imagem: "/imagem-destaque.jpeg"
+imagem: "imagem-destaque.jpeg"
 ordem: 1
 ---
 

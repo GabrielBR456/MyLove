@@ -1,7 +1,7 @@
 ---
 titulo: "Sétimo date - Festa Junina"
 data: "24 de julho de 2026"
-imagem: "/imagem-destaque7.jpeg"
+imagem: "imagem-destaque7.jpeg"
 ordem: 7
 ---
 

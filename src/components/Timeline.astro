@@ -19,7 +19,7 @@ const { momentos } = Astro.props;
           {momento.data.imagem && (
             <div class="w-full bg-slate-900/5 rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
               <img 
-                src={`${import.meta.env.BASE_URL}${momento.data.imagem}`} 
+                src={`${import.meta.env.BASE_URL}/${momento.data.imagem.replace(/^\/+/, '')}`} 
                 alt={momento.data.titulo} 
                 class="w-full max-h-[450px] object-contain shadow-inner"
               />

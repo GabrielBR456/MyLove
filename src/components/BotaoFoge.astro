@@ -1,0 +1,77 @@
+<div class="flex flex-col items-center justify-center w-full h-full relative p-4" id="container-botao">
+  
+  <!-- Texto estático con ID para cálculo e espaço inferior extra -->
+  <h3 class="text-2xl md:text-3xl font-bold text-orange-700 text-center z-0 pb-12" id="question-text">
+    Eu te amo meu amor, você me ama também?
+  </h3>
+
+  <!-- Botão que foge (única opção de resposta) -->
+  <button 
+    id="btn-foge" 
+    class="px-10 py-3 mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl rounded-full shadow-lg shadow-orange-300 transition-all absolute z-10"
+  >
+    Sim!
+  </button>
+</div>
+
+<script>
+  // Aguarda o DOM carregar para evitar erros
+  document.addEventListener('DOMContentLoaded', () => {
+    // Correção TypeScript: Declaramos o tipo e checamos se é nulo
+    const btn = document.getElementById('btn-foge') as HTMLButtonElement | null;
+    const container = document.getElementById('container-botao') as HTMLDivElement | null;
+    const textElement = document.getElementById('question-text') as HTMLHeadingElement | null;
+
+    // Se algum elemento não existir, paramos o código aqui
+    if (!btn || !container || !textElement) return;
+
+    function moverBotao() {
+      if (!btn || !container || !textElement) return;
+      
+      // Calcula o espaço do card para o botão não vazar da tela
+      const maxX = container.clientWidth - btn.clientWidth;
+      const maxY = container.clientHeight - btn.clientHeight;
+
+      // --- CÁLCULO DA ÁREA DE SEGURANÇA ---
+      // Calcula a posição inferior do texto relativa ao contêiner
+      const containerRect = container.getBoundingClientRect();
+      const textRect = textElement.getBoundingClientRect();
+      const textBottomRelative = textRect.bottom - containerRect.top;
+
+      // Adiciona um espaçamento de segurança (em pixels)
+      const safePadding = 15;
+      const minAllowedY = textBottomRelative + safePadding;
+
+      // --- GERAÇÃO DE POSIÇÕES ---
+      // Gera posições aleatórias para X (totalmente livre)
+      const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+      
+      // Gera posições aleatórias para Y, mas LIMITANDO para estar SEMPRE abaixo do texto
+      let randomY = 0;
+      // Verifica se há espaço suficiente para mover abaixo do texto
+      if (maxY > minAllowedY) {
+          // O random vai de minAllowedY até o máximo possível (maxY)
+          randomY = Math.max(minAllowedY, Math.floor(Math.random() * (maxY - minAllowedY)) + minAllowedY);
+      } else {
+          // Se não houver espaço suficiente (card muito pequeno), coloque-o na parte inferior
+          randomY = maxY;
+      }
+      
+      // Aplica a nova posição
+      btn.style.left = `${randomX}px`;
+      btn.style.top = `${randomY}px`;
+      btn.style.bottom = 'auto'; // Garante que a posição de baixo não conflite
+    }
+
+    // Move o botão aleatoriamente no carregamento inicial para tirá-lo do centro, 
+    // e garante que ele esteja abaixo do texto
+    setTimeout(moverBotao, 100);
+
+    // Tenta fugir no hover (mouse) ou touch/clique (celular)
+    btn.addEventListener('mouseover', moverBotao);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); // Impede o clique de fazer algo
+      moverBotao();
+    });
+  });
+</script>

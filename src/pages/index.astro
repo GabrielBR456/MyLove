@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline.astro';
+import BotaoFoge from '../components/BotaoFoge.astro';
+
+const momentos = await getCollection('momentos');
+// Correção TypeScript: Adicionado (a: any, b: any)
+const momentosOrdenados = momentos.sort((a: any, b: any) => a.data.ordem - b.data.ordem);
+---
+
+<Layout titulo="Para o meu Amor 💖">
+  
+  <!-- SEÇÃO 1: Declarações (Paleta Roxo e Azul) -->
+  <section class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-violet-900 text-white flex flex-col items-center py-16 px-4">
+    <header class="text-center space-y-6 max-w-3xl mx-auto mt-10">
+      <span class="px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-white/20 text-white shadow-sm">
+        Para a mulher que eu amo
+      </span>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-md">
+        Você tem a energia mais linda que eu já vi.
+      </h1>
+      <p class="text-indigo-100 max-w-md mx-auto text-lg">
+        Cada detalhe seu é o que me faz te amar mais a cada dia.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mt-16">
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+        <h2 class="text-2xl font-bold mb-4 text-purple-200">Coisas que você ama 💖</h2>
+        <ul class="space-y-3 text-indigo-100">
+          <li>🍕 <strong>Comida:</strong> Morango, Hamburger, Acarajé, Brownie. Acho fofo como em cada um dos seus 
+			gostos são hiper variados, porém não tão generalistas. Você gosta de várias frutas, mas um tipo específico
+			que depende de textura, de não ser tão doce, você gosta de um cítrico/azedinho com um bom equilibrio</li>
+          <li>📺 <strong>Série/filme:</strong> Pose, Dark, Homem-Aranha, Star Wars. Amo como seus gostos em séries e filmes
+			são histórias em que o gosto parte de algo desprentecioso até, algum tipo de identificação ou de atração por 
+			personalidade/beleza do roteiro/enredo. Acho incrível o quanto você goste de ir na raíz e conhecer tudo a respeito
+			do que vocêe ama, isso te torna uma das pessoas mais interessantes que eu conheço.</li>
+          <li>🎵 <strong>Música:</strong> Mystery of Love, Pontos, sunflower, Conto do Pescador. Acho lindo como suas músicas 
+			parecem a trilha sonora da sua vida, cada música que você ama me faz imaginar o seu mood e exatamente como você fica
+			com cada uma. Eu amo te ver cantando, dançando e se entregando por inteira no ritmo das músicas que você ama. 
+			Essse seu jeito me contagia tanto quanto minhas músicas favoritas e minhass danças favoritas.</li>
+        </ul>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+        <h2 class="text-2xl font-bold mb-4 text-purple-200">O que eu mais amo em você ✨</h2>
+        <ul class="space-y-3 text-indigo-100">
+          <li>🥰 <strong>Sua Personalidade:</strong> O jeito que você diz as coisas através da
+			 suas ações me traz paz, segurança, força, o seu jeito de viver e de relacionar 
+			 comigo me faz o homem mais feliz possível.</li>
+          <li>😍 <strong>Sua Beleza:</strong> Sua beleza é tão rica que se torna algo inefável, 
+			eu poderia passar horas, dias, semenas, meses, anos tentando descrever o quão bela 
+			você é (seja linda de admiração ou gostosa de atração). Mesmo assim, se fosse para definir
+			o que eu mais amo em você, com certeza é o sorriso, não tem nada que me deixa mais paralisado
+			que seu sorriso, paralisado porque eu não sei como reagir a um brilho tão forte quanto sua alegria
+			espressa em algo tão belo</li>
+          <li>📸 <strong>Nossos Momentos:</strong> Amo todos os momentos que tenho com você. Até os que nos
+			machucaram, quando penso neles não lembro da dor, lembro do nosso amor aumentando pois mesmo machudados
+			tentávamos fazer o que era melhor para nós dois. Cada date foi único, cada risada, cada lágrima, cada beijo
+			e cada abraço. Cada momento foi incrível e intenso e não importa o obstáculo sinto que te amo mais a cada evento.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 2: Timeline (Neutro/Suave para facilitar a leitura) -->
+  <section class="min-h-screen bg-slate-50 flex flex-col items-center py-16 px-4">
+    <h2 class="text-3xl font-bold text-indigo-900 text-center mb-12">Nossa Linha do Tempo</h2>
+    <div class="w-full max-w-4xl">
+      <Timeline momentos={momentosOrdenados} />
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: Praia Ensolarada (Cores Quentes, YouTube e Botão) -->
+  <section class="min-h-screen bg-gradient-to-br from-yellow-300 via-orange-400 to-amber-500 flex flex-col items-center justify-center py-16 px-4 relative overflow-hidden">
+    
+    <!-- Elementos decorativos de praia -->
+    <div class="absolute top-10 right-10 text-8xl opacity-30 animate-pulse">☀️</div>
+    <div class="absolute bottom-10 left-10 text-8xl opacity-30">🌴</div>
+
+    <!-- Card do YouTube -->
+    <div class="bg-white/90 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-xl border border-white/50 text-center max-w-2xl w-full z-10 mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-orange-600 mb-6">Sua música favorita🎶</h2>
+      <div class="aspect-video w-full rounded-xl overflow-hidden shadow-md">
+        <!-- SUBSTITUA O LINK ABAIXO PELO ID DA MÚSICA DELA -->
+        <iframe 
+			class="w-full h-full" 
+			src="https://www.youtube.com/embed/05WQQaNeLMo" 
+			title="YouTube video player" 
+			frameborder="0" 
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+			allowfullscreen>
+			</iframe>
+      </div>
+    </div>
+
+    <!-- Card do Botão Interativo -->
+    <div class="w-full max-w-2xl text-center bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white/50 z-10 relative overflow-hidden h-[250px] flex items-center justify-center">
+      <BotaoFoge />
+    </div>
+    
+  </section>
+</Layout>
